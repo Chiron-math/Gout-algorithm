@@ -1,6 +1,7 @@
 # Gout-algorithm
 
 ##程序员的算法趣题时间
+
 入门
 algorithm-parctise
 ---
@@ -13,5 +14,3 @@ algorithm-parctise
 ·04  M人切N长木头
 
 ·05  现金支付选择
-
-创建 一个新分支
