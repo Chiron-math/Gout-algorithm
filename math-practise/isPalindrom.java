@@ -1,17 +1,17 @@
 package com.company;
 
 /**
- * ³ÌĞòÔ±Ëã·¨È¤ÌâQ£º01
+ * ç¨‹åºå‘˜ç®—æ³•è¶£é¢˜Qï¼š01
  * Created by admin on 2018/1/25.
- * ĞŞ¸ÄÒ»²½ÔÚdeciToX()Àï£¬Ê±¼ä2018/1/25
+ * ä¿®æ”¹ä¸€æ­¥åœ¨deciToX()é‡Œï¼Œæ—¶é—´2018/1/25
  */
 public class isPalindrom {
 
-	
+
 	/**
-	 * ÅĞ¶ÏÊÇ·ñ»ØÎÄ£¬ÓÃJavaÄ¬ÈÏ¿â½«Æä×ª»»Îª×Ö·û´®È»ºóÊ×Î²±È½Ï
-	 * ÈôÊÇÌáÇ°whileÊ§°Ü£¬Ôòm¶¨Ğ¡ÓÚÊıÎ»µÄÒ»°ë-1
-	 * m<digitÊÇÎªÁË·ÀÖ¹Êı×éÏÂ±êÔ½½ç
+	 * åˆ¤æ–­æ˜¯å¦å›æ–‡ï¼Œç”¨Javaé»˜è®¤åº“å°†å…¶è½¬æ¢ä¸ºå­—ç¬¦ä¸²ç„¶åé¦–å°¾æ¯”è¾ƒ
+	 * è‹¥æ˜¯æå‰whileå¤±è´¥ï¼Œåˆ™må®šå°äºæ•°ä½çš„ä¸€åŠ-1
+	 * m<digitæ˜¯ä¸ºäº†é˜²æ­¢æ•°ç»„ä¸‹æ ‡è¶Šç•Œ
 	 * @param i
 	 * @return
 	 */
@@ -22,13 +22,13 @@ public class isPalindrom {
 		int digit = String.valueOf(i).length()-1;
 		while(m < digit && d[m] == d[digit-m])
 			m++;
-		//Ö®Ç°ÔÚmÅĞ¶ÏÀïm < (digit+1)/2-1ÔÚÅ¼ÊıÊÇÓĞÎÊÌâ
+		//ä¹‹å‰åœ¨måˆ¤æ–­é‡Œm < (digit+1)/2-1åœ¨å¶æ•°æ˜¯æœ‰é—®é¢˜
 		if( m < (digit+1)/2)
 			b = false;
 		return b;
 	}
 
-	
+
 	/**
 	 * do {
 			count=10*(count+i%scale);
@@ -36,26 +36,26 @@ public class isPalindrom {
 		} while (i>scale);
 		count +=i/scale;
 		count =count/10;
-		½á¹û»áµ¹¹ıÀ´¶øÇÒÓĞÎÊÌâ
+		ç»“æœä¼šå€’è¿‡æ¥è€Œä¸”æœ‰é—®é¢˜
 	 */
 	/**
-	 * Ê®½øÖÆ×ª»¯ÎªX½øÖÆ
-	 * ½«ÓàÊı·Åºó£¬×îºóµÃµ½µÄ³ıÊı·ÅÔÚ×÷ÎªÎ»Êı±ê¼ÇmµÄÎ»ÖÃÉÏ£¨¼´ÊÇÊ×Î»£©
-	 * ÕâÑù²»»á³öÏÖµ¹¹ıÀ´µÄÇé¿ö
-	 * Mtah.powÖ¸ÊıÔËËã(10,m)10µÄm´ÎÔËËã
+	 * åè¿›åˆ¶è½¬åŒ–ä¸ºXè¿›åˆ¶
+	 * å°†ä½™æ•°æ”¾åï¼Œæœ€åå¾—åˆ°çš„é™¤æ•°æ”¾åœ¨ä½œä¸ºä½æ•°æ ‡è®°mçš„ä½ç½®ä¸Šï¼ˆå³æ˜¯é¦–ä½ï¼‰
+	 * è¿™æ ·ä¸ä¼šå‡ºç°å€’è¿‡æ¥çš„æƒ…å†µ
+	 * Mtah.powæŒ‡æ•°è¿ç®—(10,m)10çš„mæ¬¡è¿ç®—
 	 * @param i
 	 * @return
 	 */
 	public int deciToX(int i, int scale){
 		int count=0;
-		//¸ü¼òµ¥·½·¨£¬Ö±½ÓÓÃStringµÄÁ¬½ÓÌØĞÔ£¬Ê¡È¥Ïà³ËµÄÎÊÌâ
+		//æ›´ç®€å•æ–¹æ³•ï¼Œç›´æ¥ç”¨Stringçš„è¿æ¥ç‰¹æ€§ï¼Œçœå»ç›¸ä¹˜çš„é—®é¢˜
 		String cc = "";
 		do {
 			cc +=  i%scale;
 			i/=scale;
 		} while (i>0);
 			count = Integer.parseInt(cc);
-		
+
 		/*int m =0;
 		do {
 			m++;
@@ -67,12 +67,12 @@ public class isPalindrom {
 		System.out.println(""+count);
 		return count;
 	}
-	
+
     public static void main(String[] args) {
-		
+
     	int i =101;
-    	System.out.println("10½øÖÆ¡¢2½øÖÆ¡¢8½øÖÆ»ØÎÄÊı×Ö´óÓÚ10½øÖÆµÄ10µÄ×îĞ¡ÖµÊÇ£º");
-    	
+    	System.out.println("10è¿›åˆ¶ã€2è¿›åˆ¶ã€8è¿›åˆ¶å›æ–‡æ•°å­—å¤§äº10è¿›åˆ¶çš„10çš„æœ€å°å€¼æ˜¯ï¼š");
+
     	isPalindrom ip = new isPalindrom();
     	int cc =0;
     	int m = 0 ,n =0;
@@ -80,17 +80,17 @@ public class isPalindrom {
     		do{
     			cc++;
     			i +=2;
-    			//ÒòÎªÓĞ¶ş½øÖÆ£¬×î¸ßÎ»±Ø¶¨ÊÇ1ËùÒÔÇó»ØÎÄµÄ½á¹ûÒ²Ò»¶¨ÊÇ1
-    			//µÃµ½½áÂÛ£¬ËùÇóµÄÊıÖµÊÇÆæÊı
+    			//å› ä¸ºæœ‰äºŒè¿›åˆ¶ï¼Œæœ€é«˜ä½å¿…å®šæ˜¯1æ‰€ä»¥æ±‚å›æ–‡çš„ç»“æœä¹Ÿä¸€å®šæ˜¯1
+    			//å¾—åˆ°ç»“è®ºï¼Œæ‰€æ±‚çš„æ•°å€¼æ˜¯å¥‡æ•°
     			m = ip.deciToX(i, 2);
     			n = ip.deciToX(i, 8);
     		}while(!ip.isPalin(m)||!ip.isPalin(n)||!ip.isPalin(i));
     		System.out.println(m+" "+ip.isPalin(m));
     		System.out.println(n+" "+ip.isPalin(n));
-    		System.out.println("½á¹ûÊÇ£º"+i);
-    		
-    		System.out.println("³ÌĞòÕÒÁË"+cc+"´Î");
-    	
+    		System.out.println("ç»“æœæ˜¯ï¼š"+i);
+
+    		System.out.println("ç¨‹åºæ‰¾äº†"+cc+"æ¬¡");
+
 	}
 
 
