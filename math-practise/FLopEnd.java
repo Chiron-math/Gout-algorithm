@@ -3,9 +3,9 @@ package com.company;
  * 程序员算法趣题：Q4
  * 切木头问题：
  * 思路：从不限制一次可以使用的最大人数开始计算，再限制一次可以使用的最大人数后
- * 还没完成
+ * 结束完成
  * @author admin
- *Created by admin on 2018/1/27.
+ *Created by admin on 2018/1/28.
  */
 public class SlicerWoods {
 	//切了多少次,这个-1有意思了。为什么这么设置，以后忘记了可以考虑一下
