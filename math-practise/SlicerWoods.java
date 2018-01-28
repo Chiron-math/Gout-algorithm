@@ -3,7 +3,7 @@ package com.company;
  * 程序员算法趣题：Q4
  * 切木头问题：
  * 思路：从不限制一次可以使用的最大人数开始计算，再限制一次可以使用的最大人数后
- * 还没完成
+ * 结束完成
  * @author admin
  *Created by admin on 2018/1/27.
  */
@@ -16,6 +16,8 @@ public class SlicerWoods {
 	public int n =0;
 	//限制的最大人数
 	public int m =0;
+	//目前木头的根叔
+	public int current =1;
 
 	/**
 	 *
@@ -53,17 +55,26 @@ public class SlicerWoods {
 	 * @param n 长度
 	 * @param m 限制的人数
 	 */
-	public void slicelim(int n,int m){
-
+	public void slicelim(int current){
+		i++;
+		if (current < n) {
+			System.out.println("已经切了"+i+"次, 这时有"+current+"个木块");
+			if(current<m){
+				slicelim(current * 2);
+			}else{
+				slicelim(current + m);
+			}
+		}else {
+			System.out.println("已经切了"+i+"次, 这时有"+n+"个木块");
+		}
 
 	}
 
 	public static void main(String[] args) {
 		SlicerWoods swood = new SlicerWoods(20,3);
-		swood.sliceunlimit(20);
+		swood.slicelim(1);
 
-		int a =5;
-		int b =7;
-		System.out.println(a+""+b);
+		/*SlicerWoods swood1 = new SlicerWoods(100,5);
+		swood1.slicelim(1);*/
 	}
 }
