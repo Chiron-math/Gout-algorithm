@@ -11,22 +11,13 @@ package com.company;
 public class Collatzconjecture_En {
 
 	public boolean isCollatz(int n,int m){
+		boolean b1,b2 ;
 		/*System.out.print(n+"->");*/
-		if(n%2==0){
-			n = n /2;
-		}else {
-			n = n*3+1;
-		}
-		if (n!=1 && n!=m) {
-			return isCollatz(n, m);
-		}else if(n == 1 && m!=1){
-			/*System.out.println("---");*/
-			return false;
-		}else{
+		n= n%2 == 0? n/2:n*3+1;
+		b1 = (n ==1)?false:(b2=(n==m)?true:isCollatz(n, m));
+		if b1
 			System.out.print(n+"符合标准。\n");
-			return true;
-		}
-
+		return b1;
 	}
 
 
