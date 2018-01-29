@@ -15,7 +15,7 @@ public class isPalindrom {
 	 * @param i
 	 * @return
 	 */
-	public Boolean isPalin(int i){
+	public Boolean isPalin(long i){
 		boolean b = true;
 		int m = 0;
 		char[] d = String.valueOf(i).toCharArray();
@@ -41,49 +41,51 @@ public class isPalindrom {
 	/**
 	 * 十进制转化为X进制
 	 * 将余数放后，最后得到的除数放在作为位数标记m的位置上（即是首位）
+	 * 上个版本默认当下的进制是10，只能10->X进制
 	 * 这样不会出现倒过来的情况
 	 * Mtah.pow指数运算(10,m)10的m次运算
 	 * @param i
 	 * @return
 	 */
-	public int deciToX(int i, int scale){
-		int count=0;
+
+	public long deciToX(long num,int scale_start, int scale_end){
+		long revdat=0, count=0;
+		int i=-1;
 		//更简单方法，直接用String的连接特性，省去相乘的问题
 		String cc = "";
-		do {
-			cc +=  i%scale;
-			i/=scale;
-		} while (i>0);
-			count = Integer.parseInt(cc);
 
-		/*int m =0;
 		do {
-			m++;
-			count = count + (int)Math.pow(10, m)*(i%scale);
-			i = i/scale;
-		} while (i>=scale);
-			count = count/10;
-			count = count + (int)Math.pow(10, m)*(i);*/
+			i++;
+			revdat = (long)Math.pow(scale_start,i)*(num%scale_start)+revdat;
+			num /= 10;
+		} while (num>0);
+
+		do {
+			//cc +=  revdat%scale_end;会使得数字倒过来了
+			cc =  revdat%scale_end+cc;
+			revdat/=scale_end;
+		} while (revdat>0);
+		count = Long.parseLong(cc.trim());
 		System.out.println(""+count);
 		return count;
 	}
 
     public static void main(String[] args) {
 
-    	int i =101;
+    	int i =11;
     	System.out.println("10进制、2进制、8进制回文数字大于10进制的10的最小值是：");
 
     	isPalindrom ip = new isPalindrom();
     	int cc =0;
-    	int m = 0 ,n =0;
-    		/*System.out.println(ip.isPalin(121));*/
+    	long m ,n ;
+    		System.out.println(ip.isPalin(121));
     		do{
     			cc++;
     			i +=2;
     			//因为有二进制，最高位必定是1所以求回文的结果也一定是1
     			//得到结论，所求的数值是奇数
-    			m = ip.deciToX(i, 2);
-    			n = ip.deciToX(i, 8);
+    			m = ip.deciToX(i, 10,2);
+    			n = ip.deciToX(i, 10,8);
     		}while(!ip.isPalin(m)||!ip.isPalin(n)||!ip.isPalin(i));
     		System.out.println(m+" "+ip.isPalin(m));
     		System.out.println(n+" "+ip.isPalin(n));
