@@ -70,6 +70,46 @@ public class isPalindrom {
 		return count;
 	}
 
+	/**
+	 * 考虑逆序的功能要求和如果数值过大出现的数值类型内存溢出的情况，那转为String输出型
+	 * 这样就不会因为大的进制转换成小的导致值溢出
+	 * @param a
+	 * @param scale_start
+	 * @param scale_end
+	 * @param nixu
+	 * @return
+	 */
+	public static String deciToX(String a,int scale_start, int scale_end, boolean nixu){
+		char[] b = a.toCharArray();
+		long revdat=0;
+		int i=0;
+		String cc = "";
+
+		//将给的字符串数值按照进制转换为10进制
+		do {
+			revdat = (long)Math.pow(scale_start,a.length()-i-1)*((b[i]-'0')%scale_start)+revdat;
+			System.out.println(revdat+"第"+i+"次");
+			i++;
+		} while (i<a.length());
+		System.out.println("转换后的数值"+revdat);
+
+		//根据是否需要逆序的要求，再转换为X进制
+		if (nixu) {
+			do {
+				cc +=  revdat%scale_end;
+				revdat/=scale_end;
+			} while (revdat>0);
+		}else{
+			do {
+				cc =  revdat%scale_end+cc;
+				revdat/=scale_end;
+			} while (revdat>0);
+		}
+		System.out.println(cc);
+		return cc;
+	}
+
+
     public static void main(String[] args) {
 
     	int i =11;
@@ -92,6 +132,7 @@ public class isPalindrom {
     		System.out.println("结果是："+i);
 
     		System.out.println("程序找了"+cc+"次");
+    	/*System.out.println(isPalindrom.deciToX("1024", 10,2, true));*/
 
 	}
 
