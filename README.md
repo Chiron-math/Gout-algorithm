@@ -17,3 +17,5 @@ algorithm-parctise
 
 ·06  新版考拉兹猜想
 
+·07  日期转换数字
+
