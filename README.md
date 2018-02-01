@@ -25,5 +25,8 @@ algorithm-parctise
 
 ·10  轮盘赌
 
-·11  斐波那契数列
+初级
+algorithm-parctise
+---
 
+·11  斐波那契数列
