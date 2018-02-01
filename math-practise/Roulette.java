@@ -2,6 +2,8 @@ package com.company;
 
 /**
  * Q10轮盘赌
+ * 轮盘设计有欧式和美式规则两种，
+ * 在这些规则下找出“连续n个数字的和”最大位置（条件：n中美式规则的和大于欧式规则）
  * @author admin
  *
  */
@@ -12,47 +14,51 @@ public class Roulette {
 	public int a=0,b=0;
 
 	/**
-	 * 求n个
-	 * @param n个连续数里马努在美式大于欧式的情况则输出
-	 */
-	public boolean get(int n){
+		 * 提前赋值使得每次变化的和只要加一个新的第n数，减去一个旧的前数
+		 * 这样减少了循环数量
+		 * 求n个
+		 * @param n个连续数里马努在美式大于欧式的情况则输出
+		 */
+		public boolean get(int n){
 
-		for (int i = 0; i < Euro_rul.length; i++) {
 			for (int j = 0; j < n; j++) {
-				if (i+j>=Euro_rul.length) {
-					a+=Euro_rul[i+j-Euro_rul.length];
-				}else {
-					a+=Euro_rul[i+j];
+				a+=Euro_rul[j];
 				}
-			}
-			if (a>sum_eur) {
-				sum_eur = a;
-//		System.out.println(sum_eur);
+			for (int i = 0; i < Euro_rul.length; i++) {
+				if (i+n>=Euro_rul.length) {
+						a+=Euro_rul[i+n-Euro_rul.length]-Euro_rul[i];
+					}else {
+						a=a+Euro_rul[i+n]-Euro_rul[i];
+					}
+				if (a>sum_eur) {
+					sum_eur = a;
+				}
 			}
 			a=0;
-		}
-		for (int i1 = 0; i1 < Amer_rul.length; i1++) {
+	//		System.out.print(sum_eur+"  ");
 			for (int j = 0; j < n; j++) {
-				if (i1+j>=Amer_rul.length) {
-					b+=Amer_rul[i1+j-Amer_rul.length];
+				b+=Amer_rul[j];
+				}
+			for (int j = 0; j < Amer_rul.length; j++) {
+				if (j+n>=Amer_rul.length) {
+					b=b+Amer_rul[j+n-Amer_rul.length]-Amer_rul[j];
 				}else {
-					b+=Amer_rul[i1+j];
+					b=b+Amer_rul[j+n]-Amer_rul[j];
+				}
+				if (b>sum_amr) {
+					sum_amr = b;
 				}
 			}
-			if (b>sum_amr) {
-				sum_amr = b;
-//		System.out.println(sum_amr);
-			}
 			b=0;
+	//		System.out.println(sum_amr+"\n");
+
+				if (sum_amr>sum_eur) {
+	//			System.out.println("美式规则更大，且最大的数字和为："+sum_amr);
+					return true;
+				}
+
+			return false;
 		}
-
-			if (sum_amr>sum_eur) {
-//			System.out.println("美式规则更大，且最大的数字和为："+sum_amr);
-				return true;
-			}
-
-		return false;
-	}
 
 
 
