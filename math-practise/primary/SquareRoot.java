@@ -1,93 +1,49 @@
 package com.company.primary;
 
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Q12平方根
+ * 计算平方根最早让 0~9的数字全部出现的最小整数
+ * 两种情况：一种包含整数；一种不包含整数时
  * @author admin
  *double范围比long大得多,long精度更高
  */
 public class SqureRoot {
-	public static long n ;
-	//位数
-	public static int m;
 
-	//脑海第一个想法
-	public static int[] b = {0,1,2,3,4,5,6,7,8,9};
+	//set的特点是不会重复
+	public static Set<Character> se = new HashSet<Character>();
 
 
-
-	public SqureRoot(long n) {
-		this.n = n;
-	}
-
-	public static boolean isContainNum(String i){
-		int sum =0;
-		char[] a = i.toCharArray();
-		for (int j = 0; j < a.length; j++) {
-			switch (a[j]) {
-			case '0':
-				b[0]=0;
-				break;
-			case '1':
-				b[1]=0;
-				break;
-			case '2':
-				b[2]=0;
-				break;
-			case '3':
-				b[3]=0;
-				break;
-			case '4':
-				b[4]=0;
-				break;
-			case '5':
-				b[5]=0;
-				break;
-			case '6':
-				b[6]=0;
-				break;
-			case '7':
-				b[7]=0;
-				break;
-			case '8':
-				b[8]=0;
-				break;
-			case '9':
-				b[9]=0;
-				break;
-			default:
-				System.out.println("出错");
-				break;
-			}
-			sum = b[0] +b[1]+b[2]+b[3]+b[4]+b[5]+b[6]+b[7]+b[8]+b[9];
-			if (sum==0) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	/**
-	 * 左右逼近，增加位数就将n乘以100，左右逼近的数就可以精确一位,慢
-	 * @param n
+	 * 包含整数部分与否 进行判断，得到结果包含0~9所有
+	 * @param i 分析的字符串，wipNum是否去除整数
 	 * @return
 	 */
-	public static long Sqr(long n){
-		int li =0;
-		long m =0,p=0,a=0;
-		a=n;
-		while (n!=0) {
-			li+=1;
-			n=n/10;
+	public static boolean isContainN(String i,boolean wipNum){
+		char[] c;
+		System.out.println(i);
+		if (wipNum) {
+			//不包含整数，从小数点后处理
+			c = i.substring(i.indexOf(".")+1).toCharArray();
+		}else{
+			//包含整数，去除小数点直接处理
+			c = i.replace(".", "").toCharArray();
 		}
-		for (m = (long) Math.pow(10, (li-1)/2); m<Math.pow(10, (li+1)/2); m++) {
-			if (m*m<=a&&(m+1)*(m+1)>a) {
-				p =m;
-			}
+		System.out.println(i.substring(i.indexOf(".")+1));
+//		char[] c = i.replace(".", "").toCharArray();
+		for (int j = 0; j < c.length; j++) {
+			se.add(c[j]);
 		}
-		return p;
+		//平方根的的值不重复的至少有10个
+		if (se.size() == 10||se.size()>10&&se.contains('E')) {
+			return true;
+		}
+		//失败后，se清零
+		se.clear();
+		System.out.println("不包含0-9的全部");
+		return false;
 	}
 
 	/**
@@ -107,25 +63,13 @@ public class SqureRoot {
 		  return n;
 	  }
 
-	  public static double cbrt(double c)
-	  {
-	    boolean b = (c>0) ? true : false; //保存c的符号
-	    c = (c>0) ? c : -c;
-	    double err = 1e-15;
-	    double t = c;
-	    while(Math.abs(t*t-c/t) > err*t)
-	      t = (c/(t*t)+t)/2.0;
-	    t = (b) ? t : -t;
-	    return t;
-	  }
-
 
 	public static void main(String[] args) {
-		/*if (isContainNum("432105946789")) {
-			System.out.println("成功");
-		}*/
-		System.out.println(sqr(9878796543213131564698798779879546465132131564654654987654321D,1e-15));
-
+		int i=1;
+		while (!isContainN(""+sqr(i, 1e-15),true)) {
+			i++;
+		}
+		System.out.println("包含0~9数字全部出现的最小整数是："+i);
 
 	}
 
