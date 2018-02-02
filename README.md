@@ -30,3 +30,5 @@ algorithm-parctise
 ---
 
 ·11  斐波那契数列
+
+·12  平方根数字
