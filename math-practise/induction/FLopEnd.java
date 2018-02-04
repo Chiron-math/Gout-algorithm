@@ -8,8 +8,8 @@ package com.company;
  *Created by admin on 2018/1/28.
  */
 public class SlicerWoods {
-	//切了多少次,这个-1有意思了。为什么这么设置，以后忘记了可以考虑一下
-	public int i =-1;
+	//已经切了多少次了
+	public int i =0;
 	//还剩下多少块木头要切
 	public int count =1;
 	//木头的长度
@@ -23,6 +23,7 @@ public class SlicerWoods {
 	 *
 	 * @param n 工程要切的长度
 	 * @param m 可同时工作最大的人数
+	 * 当m>n的时候 不限制人数的条件就满足了(定义域同时满足不限制人数的情况)
 	 */
 	public SlicerWoods(int n,int m) {
 		// TODO Auto-generated constructor stub
@@ -30,25 +31,6 @@ public class SlicerWoods {
 		this.m = m;
 	}
 
-	/*
-	 * 不限制人数的切木头最快法
-	 * 用递归实现了
-	 */
-	public void sliceunlimit(int n) {
-		++i;
-		System.out.println("已经切了"+i+"次, 这时有"+count+"个木块，还剩"+n+"长的木头要切");
-		if (n!=1) {
-			if (n%2 !=0) {
-				 sliceunlimit(n-1);
-				 //在有余数的时候，先切一厘米下来凑偶数，这样的话，需要切的木头数量没变
-				 //count不增不减
-			}else{
-				count *=2;
-				//count必须放在sliceunlimit()的上面这是有意思的，否则count的值不变，只有这样，count的值才会传进sliceunlimit里有体现
-				 sliceunlimit(n/2);
-			}
-		}
-	}
 
 	/**
 	 * 限制人数m的切木头最快法，（最大利用不让人闲着）
@@ -56,7 +38,6 @@ public class SlicerWoods {
 	 * @param m 限制的人数
 	 */
 	public void slicelim(int current){
-		i++;
 		if (current < n) {
 			System.out.println("已经切了"+i+"次, 这时有"+current+"个木块");
 			if(current<m){
@@ -67,7 +48,7 @@ public class SlicerWoods {
 		}else {
 			System.out.println("已经切了"+i+"次, 这时有"+n+"个木块");
 		}
-
+		i++;
 	}
 
 	public static void main(String[] args) {
