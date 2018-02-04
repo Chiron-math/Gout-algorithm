@@ -30,6 +30,7 @@ public class CountrynameSolitaire {
 			se1.add(s[i]);
 		}
 		for (String string : se1) {
+			//通过->分隔得到多少国名，得出结论：接龙进行多少步
 			s1 = solitatire(string).split("->");
 			n = s1.length;
 			if (m<n) {
@@ -50,8 +51,10 @@ public class CountrynameSolitaire {
 		while(it.hasNext()){
 			String value = it.next();
 			if (value.charAt(0)==str.charAt(str.length()-1)) {
+				//每一步的字符，这次的->下次的
 				val = str+"->"+solitatire(value) ;
 			}
+			//判断是否最长
 			if (val2.length()<val.length()) {
 				val2 = val;
 			}
@@ -67,8 +70,6 @@ public class CountrynameSolitaire {
 	public static void main(String[] args) {
 		CountrynameSolitaire cs =new CountrynameSolitaire();
 //		System.out.println(solitatire(s[1]));
-
-
 
 	}
 }
