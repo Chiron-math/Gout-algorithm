@@ -1,11 +1,16 @@
 package com.company.primary;
 
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * Q14国名接龙
+ * Q14世界杯参赛国的国名接龙
  * @author admin
- *
+ * 假设每个国名只能使用一次
+ * 求能接的最长的顺序，以及响应的国名个数
+ * 这里删去了返回int值的递归，因为返回的int值信息少无法转换为对应的最长顺序字符串
  */
 public class CountrynameSolitaire {
 	public static String[] s = {"Brazil","Croatia","Mexico","Spain","Netherlands","Chile","Australia",
@@ -57,43 +62,6 @@ public class CountrynameSolitaire {
 		}
 		return val2;
 	}
-
-	//这是返回int值，得到最高步数的情况，但是上面的可以显示出来过程
-	/*public static int solitatire(String str){
-		int n =0,m=0;
-		String val= "";
-		//刚开始remove和add放在while里，总是引起并发问题，且不需要
-		se2.remove(str);
-		Iterator<String> it = se2.iterator();
-		while(it.hasNext()){
-			String value = it.next();
-			if (value.charAt(0)==str.charAt(str.length()-1)) {
-				n = solitatire(value) +1;
-			}
-			if (m<n) {
-				m=n;
-				val = value;
-			}
-		}
-
-		se2.add(str);
-		if (m==0) {
-			return 1;
-		}
-
-		//这样有错，因为用Iterator进行便利，通过.remove(Object)进行操作，
-		//全局修改使得与遍历时定的值不同报错
-		for(String string : se2){
-			if (string.charAt(0)==str.charAt(str.length()-1)) {
-				se2.remove(string);
-				n = solitatire(string)+1;
-				se2.add(string);
-			}
-		}
-
-		return m;
-	}*/
-
 
 
 	public static void main(String[] args) {
