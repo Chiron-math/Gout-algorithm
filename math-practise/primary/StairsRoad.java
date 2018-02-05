@@ -3,37 +3,20 @@ package com.company.primary;
 /**
  * Q15 走楼梯
  * 当存在10级台阶，且移动规则相同时，有多少种两人最终停在同一级的情况
- * 把问题转换为一人从0到i，另一人从i往第11级走。计算i级的情况时，步数遍历，总共情况。
+ * 第一种：（不分先后顺序，转化为05纸币换钱问题）把问题转换为一人从0到i，另一人从i往第11级走。计算i级的情况时，步数遍历，总共情况。
+ * 第二种：动态规划，不考虑终点，两个终止条件。（可以满足单人走楼梯问题，只要减少里面一次for循环，使得m不变）
  * @author admin
  *
  */
 public class StairsRoad {
+	public static int steps=4;
+
 
 	/**
-	 * 单人走楼梯问题（并不确定每次的步数）
-	 * @param n 从第n个楼梯出发
-	 * @param m 目标第m个
-	 * @return 多少种类方法（不确定走了多少步）
-	 */
-	public static long S(int n,int m){
-		long a =0;
-		if (n+4<=m) {
-			return S(n+1,m)+S(n+2,m)+S(n+3,m)+S(n+4,m);
-		}else if (n+3<=m) {
-			return S(n+1,m)+S(n+2,m)+S(n+3,m);
-		}else if (n+2<=m) {
-			a = S(n+1,m)+S(n+2,m);
-			return S(n+1,m)+S(n+2,m);
-		}else{
-			return 1;
-		}
-
-	}
-
-	/**
+	 * 第一种
 	 * 不考虑先后顺序的
-	 * @param n 从第n个楼梯出发
-	 * @param m 目标第m个  如果10级台阶，最高是11
+	 * @param n
+	 * @param m 如果10级台阶，最高是11
 	 * @param x
 	 * @return
 	 */
@@ -54,16 +37,44 @@ public class StairsRoad {
 		return p;
 	}
 
-	public static void main(String[] args) {
-		int mount=0,steps=0,max=11;
-
-		for (int i = 1; i <= max; i++) {
-			steps=i<=10-i?i:max-i;
-			for (int j = 0; j < steps; j++) {
-				mount+=Stairs(0, i, j)*Stairs(i, max, j);
+	/**
+	 * 第二种
+	 * 动态规划，只看cnt种情况，不确定终点(问题是m和n相差过大的时候，运算速度变得极慢)
+	 * 俩个终止条件，一个是有效，保留
+	 * @param n A往上走的起始位置
+	 * @param m B往下走的起始位置
+	 * @return 全遍历的走，走到了+1（可以满足单人走楼梯问题，只要减少里面一次for循环，使得m不变）
+	 */
+	public static int Stairs(int n, int m){
+		if (n>m) {
+			return 0;
+		}
+		if (n == m) {
+			return 1;
+		}
+		int cnt =0;
+		for (int i = 1; i <= steps; i++) {
+			for (int j = 1; j <= steps; j++) {
+				cnt+= Stairs(n+i, m-j);
 			}
 		}
-		System.out.println(mount);
+		return cnt;
+	}
+
+	public static void main(String[] args) {
+		//不考虑先后顺序，由确定终点开始
+		// int mount=0,steps=0,max=11;
+		// for (int i = 1; i <= max; i++) {
+		// 	steps=i<=10-i?i:max-i;
+		// 	for (int j = 0; j < steps; j++) {
+		// 		mount+=Stairs(0, i, j)*Stairs(i, max, j);
+		// 	}
+		// }
+		// System.out.println(mount);
+
+		System.out.println(Stairs(0, 10));
+
+
 	}
 
 }
