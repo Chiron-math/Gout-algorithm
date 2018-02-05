@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class StairsRoad {
 	public static int steps=4, max = 20;
-	public static int[][] i = new int[max+1][max+1];
+	public static double[][] i = new double[max+1][max+1];
 
 
 	/**
@@ -50,27 +50,27 @@ public class StairsRoad {
 	 * @return 全遍历的走，走到了+1（可以满足单人走楼梯问题，只要减少里面一次for循环，使得m不变）
 	 */
 	//修改第二种，加快程序的运行，所以提前内存化，与斐波那契数列一样
-	public static int Stairs(int n, int m){
+	//发现i[n][m]！=0时候直接返回已经赋值好的i[n][m]值，否则就给它赋值
+	//当结果超过33时候就超出了范围，使用double
+	public static double Stairs(int n, int m){
 		if (n>m) {
 			return 0;
 		}
-		//n=m时候不需要设置
+		if(i[n][m]==0){
 		if (n == m) {
-			// return i[n][n]=1;
+			i[n][m]=1;
 			return 1;
 		}
 		int cnt =0;
 		for (int i = 1; i <= steps; i++) {
 			for (int j = 1; j <= steps; j++) {
 				cnt+= Stairs(n+i, m-j);
+				}
 			}
+		i[n][m]=cnt;
 		}
 
-		//用这种方式没有达到加快的效果，需要发现i[n][m]!=0时候才返回
-		if (i[n][m]==0) {
-			i[n][m]=cnt;
-		}
-		return cnt;
+		return i[n][m];
 	}
 
 	public static void main(String[] args) {
