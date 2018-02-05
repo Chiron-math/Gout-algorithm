@@ -54,8 +54,10 @@ public class StairsRoad {
 		if (n>m) {
 			return 0;
 		}
+		//n=m时候不需要设置
 		if (n == m) {
-			return i[n][n]=1;
+			// return i[n][n]=1;
+			return 1;
 		}
 		int cnt =0;
 		for (int i = 1; i <= steps; i++) {
@@ -63,7 +65,12 @@ public class StairsRoad {
 				cnt+= Stairs(n+i, m-j);
 			}
 		}
-		return i[n][m]=cnt;
+
+		//用这种方式没有达到加快的效果，需要发现i[n][m]!=0时候才返回
+		if (i[n][m]==0) {
+			i[n][m]=cnt;
+		}
+		return cnt;
 	}
 
 	public static void main(String[] args) {
