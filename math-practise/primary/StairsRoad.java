@@ -1,5 +1,8 @@
 package com.company.primary;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Q15 走楼梯
  * 当存在10级台阶，且移动规则相同时，有多少种两人最终停在同一级的情况
@@ -9,7 +12,8 @@ package com.company.primary;
  *
  */
 public class StairsRoad {
-	public static int steps=4;
+	public static int steps=4, max = 20;
+	public static int[][] i = new int[max+1][max+1];
 
 
 	/**
@@ -45,12 +49,13 @@ public class StairsRoad {
 	 * @param m B往下走的起始位置
 	 * @return 全遍历的走，走到了+1（可以满足单人走楼梯问题，只要减少里面一次for循环，使得m不变）
 	 */
+	//修改第二种，加快程序的运行，所以提前内存化，与斐波那契数列一样
 	public static int Stairs(int n, int m){
 		if (n>m) {
 			return 0;
 		}
 		if (n == m) {
-			return 1;
+			return i[n][n]=1;
 		}
 		int cnt =0;
 		for (int i = 1; i <= steps; i++) {
@@ -58,21 +63,12 @@ public class StairsRoad {
 				cnt+= Stairs(n+i, m-j);
 			}
 		}
-		return cnt;
+		return i[n][m]=cnt;
 	}
 
 	public static void main(String[] args) {
-		//不考虑先后顺序，由确定终点开始
-		// int mount=0,steps=0,max=11;
-		// for (int i = 1; i <= max; i++) {
-		// 	steps=i<=10-i?i:max-i;
-		// 	for (int j = 0; j < steps; j++) {
-		// 		mount+=Stairs(0, i, j)*Stairs(i, max, j);
-		// 	}
-		// }
-		// System.out.println(mount);
 
-		System.out.println(Stairs(0, 10));
+		System.out.println(Stairs(0, 11));
 
 
 	}
