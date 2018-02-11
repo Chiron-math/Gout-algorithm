@@ -1,6 +1,9 @@
 package com.company.primary;
 /**
  * Q21 异或运算三角形
+ * 有个简单方法就是计算该行有多少个零
+ * 每行的数字排列为上两行的异或排列
+ * java没有直接表示2进制的方法，所以这里不采用上面的整行处理方法
  * @author admin
  *
  */
@@ -35,6 +38,7 @@ public class Xortriangle {
 
 	public static void main(String[] args) {
 		System.out.println(C());
+
 
 	}
 }
