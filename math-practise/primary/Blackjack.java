@@ -6,6 +6,7 @@ package com.company.primary;
  * @author admin
  *
  */
+ 
 public class Blackjack {
 	//m是情况的种数
 	public static int m =0;
